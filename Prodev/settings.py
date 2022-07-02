@@ -38,7 +38,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Appwarfarin',
+    'rest_framework'
 ]
+
+
+
+#  Rest Framework
+
+REST_FRAMEWORK = {
+     'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -116,7 +132,7 @@ USE_TZ = True
 
 # auth
 
-AUTH_USER_MODEL = 'Appwarfarin.User'
+# AUTH_USER_MODEL = 'Appwarfarin.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

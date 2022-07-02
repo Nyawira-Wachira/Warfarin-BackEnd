@@ -3,33 +3,42 @@ from django.db import models
 
 # Create your models here.
 
-class User(AbstractUser):
-    is_receptionist = models.BooleanField(default=False)
-    is_nurse = models.BooleanField(default=False)
-    is_labtech = models.BooleanField(default=False)
-    is_doctor = models.BooleanField(default=False)
-
 
 
 class Doctor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    def doctor():
+        return 'doctor'
+    id = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=2000)
+    password = models.CharField(max_length=50, null=False, blank=False, default=doctor)
+    slug = models.SlugField()
 
 
     def __str__(self):
-        return self.user.username
-        
+        return self.name
+
+    class Meta:
+        ordering = ('-id',)
 
 class Nurse(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    def nurse():
+        return 'nurse'
+    id = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=2000)
+    password = models.CharField(max_length=50, null=False, blank=False, default=nurse)
+    slug = models.SlugField()
+
 
     def __str__(self):
-        return self.user.username
+        return self.name
 
-
+    class Meta:
+        ordering = ('-id',)   
 
 
 class Patient(models.Model):
     # receptionist 
+    id = models.AutoField(primary_key=True)
     Patient_name = models.CharField(max_length=100)
     Patient_age = models.IntegerField()
     Patient_Residence = models.CharField(max_length=100)
@@ -51,13 +60,17 @@ class Patient(models.Model):
 
 
 
-class INR_Range(models.Model):
-    INR_Range_name = models.CharField(max_length=100)
+class INR(models.Model):
+    INR_name = models.CharField(max_length=100)
     INR_Range_min = models.IntegerField()
     INR_Range_max = models.IntegerField()
+    INR_Range_desc = models.CharField(max_length=100)
+    INR_Rtc_period = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.INR_Range_name
+        return self.INR_name
+
+
 
 
 
