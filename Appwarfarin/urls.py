@@ -1,8 +1,10 @@
 from django.urls import path, include
 # from django.contrib.auth import get_user_model
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from .models import Patient, Doctor, Nurse, INR
 from rest_framework import routers, serializers, viewsets
 from rest_framework.permissions import IsAuthenticated
+
 # Serializers define the API representation.
 # class UserSerializer(serializers.HyperlinkedModelSerializer):
 #     class Meta:
@@ -19,6 +21,7 @@ class PatientSerializer(serializers.HyperlinkedModelSerializer):
         model = Patient
         fields = ['url','id','Patient_name', 'Patient_age', 'Patient_Residence', 'Patient_phone', 'Patient_email', 'Patient_Bp', 'Patient_weight', 'Patient_height', 'Patient_temperature', 'Patient_Inr', 'Patient_Diagnosis']
 class PatientViewSet(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = (IsAuthenticated,)
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
@@ -31,6 +34,7 @@ class DoctorSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['url', 'username','password']
 
 class DoctorViewSet(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = (IsAuthenticated,)
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
@@ -44,6 +48,7 @@ class NurseSerializer(serializers.HyperlinkedModelSerializer):
     
 
 class NurseViewSet(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = (IsAuthenticated,)
     queryset = Nurse.objects.all()
     serializer_class = NurseSerializer
