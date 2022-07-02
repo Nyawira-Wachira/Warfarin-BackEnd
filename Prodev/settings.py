@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Appwarfarin',
 ]
 
 MIDDLEWARE = [
@@ -111,6 +112,11 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+
+# auth
+
+AUTH_USER_MODEL = 'Appwarfarin.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
