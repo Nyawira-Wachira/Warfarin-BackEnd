@@ -91,6 +91,26 @@ Method : GET
 ```
 
 
+```json
+
+{
+    "success": "true",
+    "status code": 200,
+    "message": "Receptionist profile fetched successfully",
+    "data": [
+        {
+            "first_name": "recp",
+            "last_name": "recp",
+            "phone_number": "12333",
+            "age": 25,
+            "gender": "F"
+        }
+    ]
+}
+
+```
+
+
 # Nurse Endpoints
 
 1. Sign Up
@@ -170,6 +190,26 @@ Method : GET
 ```bash
 
 /api/profile/
+
+```
+
+
+```json
+
+{
+    "success": "true",
+    "status code": 200,
+    "message": "Nurse profile fetched successfully",
+    "data": [
+        {
+            "first_name": "sue",
+            "last_name": "nurse",
+            "phone_number": "123454",
+            "age": 20,
+            "gender": "F"
+        }
+    ]
+}
 
 ```
 
@@ -255,6 +295,26 @@ Method : GET
 ```
 
 
+```json
+
+{
+    "success": "true",
+    "status code": 200,
+    "message": "Lab profile fetched successfully",
+    "data": [
+        {
+            "first_name": "lab",
+            "last_name": "lab",
+            "phone_number": "1234589",
+            "age": 22,
+            "gender": "F"
+        }
+    ]
+}
+
+```
+
+
 # Doctor Endpoints
 
 1. Sign Up
@@ -332,6 +392,26 @@ Method : GET
 ```bash
 
 /api/profile/
+
+```
+
+```json
+
+{
+    "success": "true",
+    "status code": 200,
+    "message": "Doctor profile fetched successfully",
+    "data": [
+        {
+            "first_name": "Sue",
+            "last_name": "doc",
+            "phone_number": "1234567",
+            "age": 32,
+            "gender": "M"
+        }
+    ]
+}
+
 
 ```
 
