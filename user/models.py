@@ -43,6 +43,24 @@ class UserManager(BaseUserManager):
 		user.save()
 		return user
 
+	# receptonist
+	def create_receptionistuser(self,email,password):
+		if password is None:
+			raise TypeError('Receptionist must have a password')
+		user = self.create_user(email,password)
+		user.is_receptionist = True
+		user.save()
+		return user
+
+	# lab tech
+	def create_labtechuser(self,email,password):
+		if password is None:
+			raise TypeError('Lab tech must have a password')
+		user = self.create_user(email,password)
+		user.is_labtech = True
+		user.save()
+		return user
+
 
 	def create_doctoruser(self,email,password):
 		if password is None:
@@ -74,6 +92,8 @@ class User(AbstractBaseUser):
 	is_paitent = models.BooleanField(default=False)
 	is_doctor = models.BooleanField(default=False)
 	is_nurse = models.BooleanField(default=False)
+	is_receptionist = models.BooleanField(default=False)
+	is_labtech = models.BooleanField(default=False)
 	
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = []
