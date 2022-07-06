@@ -5,3 +5,4 @@ django-rest-auth==0.9.5
 djangorestframework-jwt
 gunicorn==20.1.0
 django-cors-headers
+djangorestframework-simplejwt
