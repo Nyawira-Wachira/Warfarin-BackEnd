@@ -43,11 +43,8 @@ class UserProfileView(RetrieveAPIView):
 				'status code': status_code,
 				'message': 'mme Lab profile fetched successfully',
 				'data': [{
-					'first_name': user_profile.first_name,
-					'last_name': user_profile.last_name,
-					'phone_number': user_profile.phone_number,
-					'age': user_profile.age,
-					'gender': user_profile.gender,
+					'username': user_profile.username,
+						'email': user_profile.user.email,
 					
 				}]
 			}
@@ -61,11 +58,8 @@ class UserProfileView(RetrieveAPIView):
 				'status code': status_code,
 				'message': 'Receptionist profile fetched successfully',
 				'data': [{
-					'first_name': user_profile.first_name,
-					'last_name': user_profile.last_name,
-					'phone_number': user_profile.phone_number,
-					'age': user_profile.age,
-					'gender': user_profile.gender,
+					'username': user_profile.username,
+						'email': user_profile.user.email,
 					
 				}]
 			}
@@ -78,11 +72,8 @@ class UserProfileView(RetrieveAPIView):
 					'status code': status_code,
 					'message': 'Nurse profile fetched successfully',
 					'data': [{
-						'first_name': user_profile.first_name,
-						'last_name': user_profile.last_name,
-						'phone_number': user_profile.phone_number,
-						'age': user_profile.age,
-						'gender': user_profile.gender,
+						'username': user_profile.username,
+						'email': user_profile.user.email,
 						
 					}]
 				}
@@ -94,15 +85,13 @@ class UserProfileView(RetrieveAPIView):
 					'status code': status_code,
 					'message': 'Doctor profle fetched successfully',
 					'data': [{
-						'first_name': user_profile.first_name,
-						'last_name': user_profile.last_name,
-						'phone_number': user_profile.phone_number,
-						'age': user_profile.age,
-						'gender': user_profile.gender,
+						'username': user_profile.username,
+						'email': user_profile.user.email,
+						
 						}]
 				}
 			if request.user.is_superuser == True:
-				userprofile = User.objects.get(user = request.user)
+				user_profile = User.objects.get(user = request.user)
 				status_code = status.HTTP_200_OK
 				response = {
 					'success': 'true',
