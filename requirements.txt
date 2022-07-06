@@ -6,3 +6,4 @@ djangorestframework-jwt
 gunicorn==20.1.0
 django-cors-headers
 djangorestframework-simplejwt
+djangorestframework-jwt
