@@ -187,3 +187,11 @@ class UserLoginSerializer(serializers.Serializer):
             'email':user.email,
             'token': jwt_token
         }
+
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model= User
+        fields = ['is_paitent','is_doctor','is_nurse','is_receptionist','is_labtech']

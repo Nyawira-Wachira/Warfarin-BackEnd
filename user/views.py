@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
-from user.serializers import LabTechRegistrationSerializer, PaitentRegistrationSerializer,DoctorRegistrationSerializer,NurseRegistrationSerializer, ReceptionRegistrationSerializer
+from user.serializers import LabTechRegistrationSerializer, PaitentRegistrationSerializer,DoctorRegistrationSerializer,NurseRegistrationSerializer, ReceptionRegistrationSerializer, UserSerializer
 from user.serializers import UserLoginSerializer
 from user.models import User
 
@@ -110,11 +110,13 @@ class UserLoginView(RetrieveAPIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
+        user = User.objects.filter(email=request.data['email']).first()
         response = {
-            'success' : 'True',
+            'success' : True,
             'status code' : status.HTTP_200_OK,
             'message': 'User logged in  successfully',
             'token' : serializer.data['token'],
+            'user': UserSerializer(user).data
             }
         status_code = status.HTTP_200_OK
 
