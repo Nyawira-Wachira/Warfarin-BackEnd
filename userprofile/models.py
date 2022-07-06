@@ -27,15 +27,8 @@ class PaitentProfile(models.Model):
 class DoctorProfile(models.Model):
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='doctor_profile')
-	first_name = models.CharField(max_length=50, unique=False)
-	last_name = models.CharField(max_length=50, unique=False)
-	phone_number = models.CharField(max_length=10, unique=True, null=False, blank=False)
-	age = models.PositiveIntegerField(null=False, blank=False)
-	GENDER_CHOICES = (
-		('M', 'Male'),
-		('F', 'Female'),
-	)
-	gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+	username = models.CharField(max_length=50, unique=False)
+
 
 	class Meta:
 		'''
@@ -47,15 +40,8 @@ class DoctorProfile(models.Model):
 class NurseProfile(models.Model):
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='nurse_profile')
-	first_name = models.CharField(max_length=50, unique=False)
-	last_name = models.CharField(max_length=50, unique=False)
-	phone_number = models.CharField(max_length=10, unique=True, null=False, blank=False)
-	age = models.PositiveIntegerField(null=False, blank=False)
-	GENDER_CHOICES = (
-		('M', 'Male'),
-		('F', 'Female'),
-	)
-	gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+	username = models.CharField(max_length=50, unique=False)
+
 
 	class Meta:
 		'''
@@ -70,15 +56,8 @@ class LabtechProfile(models.Model):
 
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='labtech_profile')
-	first_name = models.CharField(max_length=50, unique=False)
-	last_name = models.CharField(max_length=50, unique=False)
-	phone_number = models.CharField(max_length=10, unique=True, null=False, blank=False)
-	age = models.PositiveIntegerField(null=False, blank=False)
-	GENDER_CHOICES = (
-		('M', 'Male'),
-		('F', 'Female'),
-	)
-	gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+	username = models.CharField(max_length=50, unique=False)
+	
 
 	class Meta:
 		'''
@@ -91,15 +70,8 @@ class LabtechProfile(models.Model):
 class ReceptionProfile(models.Model):
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='reception_profile')
-	first_name = models.CharField(max_length=50, unique=False)
-	last_name = models.CharField(max_length=50, unique=False)
-	phone_number = models.CharField(max_length=10, unique=True, null=False, blank=False)
-	age = models.PositiveIntegerField(null=False, blank=False)
-	GENDER_CHOICES = (
-		('M', 'Male'),
-		('F', 'Female'),
-	)
-	gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+	username = models.CharField(max_length=50, unique=False)
+	
 
 	class Meta:
 		'''

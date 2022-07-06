@@ -13,14 +13,14 @@ JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
 class LabTechSerializer(serializers.ModelSerializer):
     class Meta:
         model = LabtechProfile
-        fields = ('first_name', 'last_name', 'phone_number', 'age', 'gender')
+        fields = ['username']
 # reception
 
 
 class ReceptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReceptionProfile
-        fields = ('first_name', 'last_name', 'phone_number', 'age', 'gender')
+        fields = ['username']
 
 
 
@@ -36,12 +36,12 @@ class PaitentSerializer(serializers.ModelSerializer):
 class DoctorSerializer(serializers.ModelSerializer):
     class Meta:
         model = DoctorProfile
-        fields = ('first_name', 'last_name', 'phone_number', 'age', 'gender')
+        fields = ['username']
 
 class NurseSerializer(serializers.ModelSerializer):
     class Meta:
         model = NurseProfile
-        fields = ('first_name', 'last_name', 'phone_number', 'age', 'gender')
+        fields = ['username']
 
 
 
@@ -61,11 +61,7 @@ class LabTechRegistrationSerializer(serializers.ModelSerializer):
         user = User.objects.create_labtechuser(**validated_data)
         LabtechProfile.objects.create(
             user=user,
-            first_name=profile_data['first_name'],
-            last_name=profile_data['last_name'],
-            phone_number=profile_data['phone_number'],
-            age=profile_data['age'],
-            gender=profile_data['gender'],
+            username=profile_data['username'],
         )
         return user
 
@@ -85,11 +81,7 @@ class ReceptionRegistrationSerializer(serializers.ModelSerializer):
         user = User.objects.create_receptionistuser(**validated_data)
         ReceptionProfile.objects.create(
             user=user,
-            first_name=profile_data['first_name'],
-            last_name=profile_data['last_name'],
-            phone_number=profile_data['phone_number'],
-            age=profile_data['age'],
-            gender=profile_data['gender'],
+           username=profile_data['username'],
         )
         return user
 
@@ -107,11 +99,8 @@ class DoctorRegistrationSerializer(serializers.ModelSerializer):
         user = User.objects.create_doctoruser(**validated_data)
         DoctorProfile.objects.create(
             user=user,
-            first_name=profile_data['first_name'],
-            last_name=profile_data['last_name'],
-            phone_number=profile_data['phone_number'],
-            age=profile_data['age'],
-            gender=profile_data['gender'],
+            username=profile_data['username'],
+            
         )
         return user
 
@@ -130,11 +119,10 @@ class NurseRegistrationSerializer(serializers.ModelSerializer):
         user = User.objects.create_nurseuser(**validated_data)
         NurseProfile.objects.create(
             user=user,
-            first_name=profile_data['first_name'],
-            last_name=profile_data['last_name'],
-            phone_number=profile_data['phone_number'],
-            age=profile_data['age'],
-            gender=profile_data['gender'],
+            username=profile_data['username'],
+            
+            
+            
         )
         return user
 
