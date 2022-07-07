@@ -41,7 +41,7 @@ class DoctorSerializer(serializers.ModelSerializer):
 class NurseSerializer(serializers.ModelSerializer):
     class Meta:
         model = NurseProfile
-        fields = ['username']
+        fields = ['username','first_name','last_name','phone_number','gender']
 
 
 
@@ -120,6 +120,7 @@ class NurseRegistrationSerializer(serializers.ModelSerializer):
         NurseProfile.objects.create(
             user=user,
             username=profile_data['username'],
+
             
             
             
@@ -183,3 +184,4 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model= User
         fields = ['is_paitent','is_doctor','is_nurse','is_receptionist','is_labtech']
+

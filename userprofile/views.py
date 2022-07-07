@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from rest_framework import status
-from rest_framework.generics import RetrieveAPIView
+from rest_framework.generics import RetrieveAPIView,UpdateAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
@@ -14,6 +14,10 @@ class UserProfileView(RetrieveAPIView):
 
 	permission_classes = (IsAuthenticated,)
 	authentication_class = JSONWebTokenAuthentication
+
+	
+	
+
 
 	def get(self, request):
 		try:
@@ -45,6 +49,10 @@ class UserProfileView(RetrieveAPIView):
 				'data': [{
 					'username': user_profile.username,
 						'email': user_profile.user.email,
+						'first_name':user_profile.first_name,
+						'last_name':user_profile.last_name,
+						'phone_number':user_profile.phone_number,
+						'gender':user_profile.gender,
 					
 				}]
 			}
@@ -60,6 +68,10 @@ class UserProfileView(RetrieveAPIView):
 				'data': [{
 					'username': user_profile.username,
 						'email': user_profile.user.email,
+						'first_name':user_profile.first_name,
+						'last_name':user_profile.last_name,
+						'phone_number':user_profile.phone_number,
+						'gender':user_profile.gender,
 					
 				}]
 			}
@@ -74,6 +86,10 @@ class UserProfileView(RetrieveAPIView):
 					'data': [{
 						'username': user_profile.username,
 						'email': user_profile.user.email,
+						'first_name':user_profile.first_name,
+						'last_name':user_profile.last_name,
+						'phone_number':user_profile.phone_number,
+						'gender':user_profile.gender,
 						
 					}]
 				}
@@ -87,6 +103,10 @@ class UserProfileView(RetrieveAPIView):
 					'data': [{
 						'username': user_profile.username,
 						'email': user_profile.user.email,
+						'first_name':user_profile.first_name,
+						'last_name':user_profile.last_name,
+						'phone_number':user_profile.phone_number,
+						'gender':user_profile.gender,
 						
 						}]
 				}
@@ -111,3 +131,28 @@ class UserProfileView(RetrieveAPIView):
 				'error': str(e)
 				}
 		return Response(response, status=status_code)
+
+
+
+
+	
+				    
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			 
