@@ -7,11 +7,11 @@ class PaitentProfile(models.Model):
 
 
 	# reception
-	full_name = models.CharField(max_length=50, unique=False)
-	age = models.PositiveIntegerField(null=False, blank=False)
-	residence = models.CharField(max_length=50, unique=False)
+	full_name = models.CharField(max_length=50, unique=False,default="Full name")
+	age = models.PositiveIntegerField(default=20)
+	residence = models.CharField(max_length=50, unique=False, default="Kenya")
 	email = models.EmailField(max_length=255, unique=True,default="patient@gmail.com")
-	phone_number = models.CharField(max_length=10, unique=True, null=False, blank=False)
+	phone_number = models.CharField(max_length=10, unique=True,blank=False, default="0723467890")
 	
 	# nurse
 
