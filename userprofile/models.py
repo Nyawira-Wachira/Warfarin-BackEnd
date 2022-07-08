@@ -5,7 +5,7 @@ from user.models import User
 
 class PaitentProfile(models.Model):
 
-	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
 	# reception
 	full_name = models.CharField(max_length=50, unique=False)
 	age = models.PositiveIntegerField(null=False, blank=False)
