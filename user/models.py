@@ -29,7 +29,8 @@ class UserManager(BaseUserManager):
 		if password is None:
 			raise TypeError('Superusers must have a password.')
 
-		user = self.create_user(email, password)
+		user = self.create_user(email)
+		user.set_password(password)
 		user.is_superuser = True
 		user.is_staff = True
 		user.save()
@@ -38,7 +39,8 @@ class UserManager(BaseUserManager):
 	def create_paitentuser(self,email,password):
 		if password is None:
 			raise TypeError('Paitent must have a password')
-		user = self.create_user(email,password)
+		user = self.create_user(email)
+		user.set_password(password)
 		user.is_paitent = True
 		user.save()
 		return user
@@ -47,7 +49,8 @@ class UserManager(BaseUserManager):
 	def create_receptionistuser(self,email,password):
 		if password is None:
 			raise TypeError('Receptionist must have a password')
-		user = self.create_user(email,password)
+		user = self.create_user(email)
+		user.set_password(password)
 		user.is_receptionist = True
 		user.save()
 		return user
@@ -56,7 +59,8 @@ class UserManager(BaseUserManager):
 	def create_labtechuser(self,email,password):
 		if password is None:
 			raise TypeError('Lab tech must have a password')
-		user = self.create_user(email,password)
+		user = self.create_user(email)
+		user.set_password(password)
 		user.is_labtech = True
 		user.save()
 		return user
@@ -65,7 +69,8 @@ class UserManager(BaseUserManager):
 	def create_doctoruser(self,email,password):
 		if password is None:
 			raise TypeError('Doctors must have a password')
-		user = self.create_user(email,password)
+		user = self.create_user(email)
+		user.set_password(password)
 		user.is_doctor = True
 		user.save()
 		return user
@@ -73,7 +78,8 @@ class UserManager(BaseUserManager):
 	def create_nurseuser(self,email,password):
 		if password is None:
 			raise TypeError('Nurse must have a password')
-		user = self.create_user(email,password)
+		user = self.create_user(email)
+		user.set_password(password)
 		user.is_nurse = True
 		user.save()
 		return user

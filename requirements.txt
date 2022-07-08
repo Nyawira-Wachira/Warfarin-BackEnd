@@ -1,6 +1,9 @@
-django==3.1.2
+django==3.2
 djangorestframework==3.12.1
 django-allauth==0.42.0
 django-rest-auth==0.9.5
 djangorestframework-jwt
 gunicorn==20.1.0
+django-cors-headers
+djangorestframework-simplejwt
+djangorestframework-jwt

@@ -9,7 +9,9 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import django 
+from django.utils.encoding import smart_str
+django.utils.encoding.smart_text = smart_str
 from pathlib import Path
 from datetime import timedelta
 
@@ -138,6 +140,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAdminUser',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication', 
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     )
 }

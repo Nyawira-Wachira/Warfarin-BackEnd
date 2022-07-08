@@ -4,7 +4,7 @@
 # base_Url
 
 ```
-https://inrapisue.herokuapp.com/
+https://solutionmakersapi.herokuapp.com/
 
 ```
 
@@ -30,15 +30,13 @@ Method : POST
 data
 ```json
 {
-    "email": "recp@gmail.com",
-    "password": "password",
-    "profile": {
-        "first_name": "recp",
-        "last_name": "recp",
-        "phone_number": "12333",
-        "age": 25,
-        "gender": "F"
-    }
+
+
+  "email": "recp@gmail.com",
+  "password": "password",
+  "profile":{
+	"username":"Receptionist"
+}
 }
 
 ```
@@ -134,15 +132,13 @@ data
 ```json
 
 {
-    "email": "nurse1@gmail.com",
-    "password": "1234",
-    "profile": {
-        "first_name": "sue",
-        "last_name": "nurse",
-        "phone_number": "123454",
-        "age": 20,
-        "gender": "F"
-    }
+
+
+  "email": "nurse@gmail.com",
+  "password": "password",
+  "profile":{
+	"username":"Nurse"
+}
 }
 
 ```
@@ -236,15 +232,13 @@ data
 ```json
 
 {
-    "email": "lab@gmail.com",
-    "password": "password",
-    "profile": {
-        "first_name": "lab",
-        "last_name": "lab",
-        "phone_number": "1234589",
-        "age": 22,
-        "gender": "F"
-    }
+
+
+  "email": "lan@gmail.com",
+  "password": "password",
+  "profile":{
+	"username":"lab"
+}
 }
 ```
 2. Sign In
@@ -338,15 +332,13 @@ data
 ```json
 
 {
-    "email": "doc@gmail.com",
-    "password": "12345",
-    "profile": {
-        "first_name": "Sue",
-        "last_name": "doc",
-        "phone_number": "1234567",
-        "age": 32,
-        "gender": "M"
-    }
+
+
+  "email": "doctor@gmail.com",
+  "password": "password",
+  "profile":{
+	"username":"doctor"
+}
 }
 ```
 2. Sign In
