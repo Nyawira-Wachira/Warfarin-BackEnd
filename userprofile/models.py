@@ -6,17 +6,29 @@ from user.models import User
 class PaitentProfile(models.Model):
 
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='paitent_profile')
-	first_name = models.CharField(max_length=50, unique=False)
-	last_name = models.CharField(max_length=50, unique=False)
-	phone_number = models.CharField(max_length=10, unique=True, null=False, blank=False)
+	# reception
+	full_name = models.CharField(max_length=50, unique=False)
 	age = models.PositiveIntegerField(null=False, blank=False)
-	GENDER_CHOICES = (
-		('M', 'Male'),
-		('F', 'Female'),
-	)
-	gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-	case = models.TextField()
+	residence = models.CharField(max_length=50, unique=False)
+	email = models.EmailField(max_length=255, unique=True,default="patient@gmail.com")
+	phone_number = models.CharField(max_length=10, unique=True, null=False, blank=False)
+	
+	# nurse
+
+	bp = models.PositiveIntegerField(default=21)
+	temparature = models.PositiveIntegerField(default=37)
+	height = models.CharField(max_length=50, default="1.75m")
+	weight =models.CharField(max_length=50, default="60 kgs")
+
+	# lab tech
+
+	inr_range = models.PositiveIntegerField(null=False, default=2.4)
+
+	
+
+	# doctor 
+
+	diagnosis = models.CharField(max_length=50, default="Continue with the previous dose of ...  RTC 2 to 4 Weeks")
 
 	class Meta:
 		'''

@@ -127,28 +127,15 @@ class NurseRegistrationSerializer(serializers.ModelSerializer):
         )
         return user
 
-class PaitentRegistrationSerializer(serializers.ModelSerializer):
-
-    profile = PaitentSerializer(required=False)
+class PaitentAddSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = User
-        fields = ('email', 'password', 'profile')
-        extra_kwargs = {'password': {'write_only': True}}
+        model = PaitentProfile
+        fields = '__all__'
 
-    def create(self, validated_data):
-        profile_data = validated_data.pop('profile')
-        user = User.objects.create_paitentuser(**validated_data)
-        PaitentProfile.objects.create(
-            user=user,
-            first_name=profile_data['first_name'],
-            last_name=profile_data['last_name'],
-            phone_number=profile_data['phone_number'],
-            age=profile_data['age'],
-            gender=profile_data['gender'],
-            case=profile_data['case']
-        )
-        return user
+   
+
+   
 
 class UserLoginSerializer(serializers.Serializer):
 
