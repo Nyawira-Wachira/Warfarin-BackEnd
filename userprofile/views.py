@@ -181,6 +181,131 @@ class DeleteInrRangeAPIView(DestroyAPIView):
 	serializer_class = InrAddSerializer
 
 
+# inr doc post
+
+
+# compute algorithm
+
+
+
+
+
+
+class PatientRemedyAPIView(ListAPIView):
+
+
+	permission_classes = (IsAuthenticated,)
+	authentication_class = JSONWebTokenAuthentication
+
+	queryset = InrRangeProfile.objects.all()
+	serializer_class = InrAddSerializer
+
+
+	def ComputeA(self,inr_range_input):
+	# algorithm for A
+		algorithm = 'INR 2-3'
+
+		if inr_range_input  <= 1.5:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='< 1.5',inr_protocol=algorithm)
+			print(remedy)
+		elif inr_range_input > 1.5 and inr_range_input <= 1.9:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='1.5-1.9',inr_protocol=algorithm)
+
+		elif inr_range_input > 2.0 and inr_range_input <= 3.3:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='2.0-3.3',inr_protocol=algorithm)
+
+		elif inr_range_input > 3.4 and inr_range_input <= 4.0:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='3.4-4.0',inr_protocol=algorithm)
+
+
+		elif inr_range_input > 4.1 and inr_range_input <= 5.0:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='4.1-5.0',inr_protocol=algorithm)
+		elif inr_range_input > 5.1 and inr_range_input <= 9.0:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='5.1-9.0',inr_protocol=algorithm)
+
+		elif inr_range_input >9.1:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='>9.0',inr_protocol=algorithm)
+
+		else:
+			remedy = None
+
+		return remedy
+
+
+
+	def ComputeB(self,inr_range_input):
+	# algorithm for A
+		algorithm = 'INR 2.5-3.5'
+
+		if inr_range_input  <= 2.0:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='< 2.0',inr_protocol=algorithm)
+			
+		elif inr_range_input > 2.0 and inr_range_input <= 2.4:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='2.0-2.4',inr_protocol=algorithm)
+
+		elif inr_range_input > 2.5 and inr_range_input <= 3.7:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='2.5-3.7',inr_protocol=algorithm)
+
+		elif inr_range_input > 3.8 and inr_range_input <= 4.0:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='3.8-4.0',inr_protocol=algorithm)
+
+		elif inr_range_input > 4.1 and inr_range_input <= 5.9:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='4.1-5.9',inr_protocol=algorithm)
+			
+		elif inr_range_input > 6.0 and inr_range_input <= 9.0:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='6.0-9.0',inr_protocol=algorithm)
+
+		elif inr_range_input >9.1:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='>9.0',inr_protocol=algorithm)
+
+		else:
+			remedy = None
+
+		return remedy
+
+
+
+	def get_queryset(self):
+
+		# first check the algoritm for the inr range
+		algorithm = self.request.query_params.get('inr_protocol',False)
+		if algorithm == 'INR 2-3':
+			patient_inr_range = self.request.query_params.get('inr_range',False)
+			patient_inr_range = float(patient_inr_range)
+			remedy = self.ComputeA(patient_inr_range)
+
+		elif algorithm == 'INR 2.5-3.5':
+			patient_inr_range = self.request.query_params.get('inr_range',False)
+			patient_inr_range = float(patient_inr_range)
+			remedy = self.ComputeB(patient_inr_range)
+
+			
+			
+	
+		print(remedy)
+
+		return remedy
+
+
+	
+
+
+
+
 
 
 

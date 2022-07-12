@@ -1,5 +1,4 @@
-from email.policy import default
-from locale import currency
+
 import uuid
 from django.db import models
 from user.models import User
@@ -121,22 +120,12 @@ class ReceptionProfile(models.Model):
 
 
 
-
-
-
-
-class InrProtocolProfile(models.Model):
-	inr_protocal = models.CharField(max_length=50,default="")
-	
-
-	class Meta:
-		
-		db_table = "inrprotocal_profile"
 # Inr Range 
 
+
 class InrRangeProfile(models.Model):
-	inr_protocol = models.OneToOneField(InrProtocolProfile, on_delete=models.CASCADE, related_name='inrprotocal_profile', default=1)
-	inr_range = models.CharField(max_length=50,default="0")
+	inr_protocol = models.CharField(max_length=50,unique=False,default='')
+	inr_range = models.CharField(max_length=100,default="0")
 	remedy = models.CharField(max_length=500,default="")
 	return_to_clinc =models.CharField(max_length=50,default="")
 	
