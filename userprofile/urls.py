@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import UserProfileView,ListPatientAPIView,ListInrRangeAPIView,CreatePatientAPIView,UpdatePatientAPIView,DeletePatientAPIView
+from .views import UserProfileView,ListPatientAPIView,ListInrRangeAPIView,CreateInrRangeAPIView,CreatePatientAPIView,UpdatePatientAPIView,DeletePatientAPIView
 
 urlpatterns = [
     # profile
@@ -13,7 +13,9 @@ urlpatterns = [
 
     # inr 
 
-    path("inrrange/all/",ListInrRangeAPIView.as_view(),name="inr_list")
+    path("inrrange/all/",ListInrRangeAPIView.as_view(),name="inr_list"),
+
+    path("inrrange/add/",CreateInrRangeAPIView.as_view(),name="add_inr")
 	
 	
 ]

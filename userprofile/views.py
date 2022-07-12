@@ -143,21 +143,21 @@ class ListPatientAPIView(ListAPIView):
 	authentication_class = JSONWebTokenAuthentication
 	"""This endpoint list all of the available Patient from the database"""
 	queryset = PaitentProfile.objects.all()
-	serializer_class = InrAddSerializer
+	serializer_class = PaitentAddSerializer
 
 class CreatePatientAPIView(CreateAPIView):
 	permission_classes = (IsAuthenticated,)
 	authentication_class = JSONWebTokenAuthentication
 	"""This endpoint allows for creation of a Patient"""
 	queryset = PaitentProfile.objects.all()
-	serializer_class = InrAddSerializer
+	serializer_class = PaitentAddSerializer
 
 class UpdatePatientAPIView(UpdateAPIView):
 	permission_classes = (IsAuthenticated,)
 	authentication_class = JSONWebTokenAuthentication
 	"""This endpoint allows for updating a specificPatient by passing in the id of the Patient to update"""
 	queryset = PaitentProfile.objects.all()
-	serializer_class = InrAddSerializer
+	serializer_class = PaitentAddSerializer
 
 
 class DeletePatientAPIView(DestroyAPIView):
@@ -165,7 +165,7 @@ class DeletePatientAPIView(DestroyAPIView):
 	authentication_class = JSONWebTokenAuthentication
 	"""This endpoint allows for deletion of a specific Patient from the database"""
 	queryset = PaitentProfile.objects.all()
-	serializer_class = InrAddSerializer
+	serializer_class = PaitentAddSerializer
 
 #  Inr 
 
@@ -177,7 +177,7 @@ class ListInrRangeAPIView(ListAPIView):
 	authentication_class = JSONWebTokenAuthentication
 	"""This endpoint list all of the available Patient from the database"""
 	queryset = InrRangeProfile.objects.all()
-	serializer_class = PaitentAddSerializer
+	serializer_class = InrAddSerializer
 
 class CreateInrRangeAPIView(CreateAPIView):
 	permission_classes = (IsAuthenticated,)

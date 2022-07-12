@@ -122,35 +122,31 @@ class ReceptionProfile(models.Model):
 	)
 	gender = models.CharField(max_length=1, choices=GENDER_CHOICES ,default='M')
 
-	db_table = "reception_profile"
+	class Meta:
+
+
+		db_table = "reception_profile"
 
 
 
 # Inr Range 
 
 class InrRangeProfile(models.Model):
-	
-	# inr_type =
-
-
 	INRPROTOCOLS_CHOICES = (
 		('INR 2-3', '2-3 PROTOCOL'),
 		('INR 2.5-3.5', '2.5-3.5 PROTOCOL'),
 	)
 	inr_type = models.CharField(max_length=20, choices=INRPROTOCOLS_CHOICES ,default='INR 2-3')
-	inr_range = models.CharField(max_length=50, unique=False default="0")
-	remedy = models.CharField(max_length=50,default="EXtra Dose and or increase weekly dose by 10-20%")
+	inr_range = models.CharField(max_length=50,default="0")
+	remedy = models.CharField(max_length=500,default="EXtra Dose and or increase weekly dose by 10-20%")
 	return_to_clinc =models.CharField(max_length=50,default="2 to 3 weeks")
 
-	db_table = "inrrange_profile"
-
-
-	
-	
-	
-
 	class Meta:
-		'''
-		to set table name in database
-		'''
-		db_table = "reception_profile"
+
+		db_table = "inrrange_profile"
+
+
+	
+	
+	
+

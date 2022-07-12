@@ -138,7 +138,6 @@ class InrAddSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = InrRangeProfile
-
         fields = '__all__'
 
    
