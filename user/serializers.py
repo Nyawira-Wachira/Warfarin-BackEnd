@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import update_last_login
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
-from userprofile.models import LabtechProfile, NurseProfile, PaitentProfile,DoctorProfile, ReceptionProfile
+from userprofile.models import LabtechProfile, NurseProfile,InrRangeProfile, PaitentProfile,DoctorProfile, ReceptionProfile
 from user.models import User
 
 
@@ -131,6 +131,13 @@ class PaitentAddSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PaitentProfile
+        fields = '__all__'
+
+
+class InrAddSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = InrRangeProfile
         fields = '__all__'
 
    

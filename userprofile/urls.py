@@ -1,12 +1,21 @@
 from django.urls import path,include
-from .views import UserProfileView,ListPatientAPIView,CreatePatientAPIView,UpdatePatientAPIView,DeletePatientAPIView
+from .views import UserProfileView,ListPatientAPIView,ListInrRangeAPIView,CreateInrRangeAPIView,CreatePatientAPIView,UpdatePatientAPIView,DeletePatientAPIView
 
 urlpatterns = [
+    # profile
 	path('profile/',UserProfileView.as_view()),
-	path("patient/all/",ListPatientAPIView.as_view(),name="todo_list"),
-    path("create/patient/", CreatePatientAPIView.as_view(),name="todo_create"),
-    path("update/patient/<int:pk>/",UpdatePatientAPIView.as_view(),name="update_todo"),
-    path("delete/patient/<int:pk>/",DeletePatientAPIView.as_view(),name="delete_todo")
+
+    # patient
+	path("patient/all/",ListPatientAPIView.as_view(),name="patient_list"),
+    path("create/patient/", CreatePatientAPIView.as_view(),name="patient_create"),
+    path("update/patient/<int:pk>/",UpdatePatientAPIView.as_view(),name="update_patient"),
+    path("delete/patient/<int:pk>/",DeletePatientAPIView.as_view(),name="delete_patient"),
+
+    # inr 
+
+    path("inrrange/all/",ListInrRangeAPIView.as_view(),name="inr_list"),
+
+    path("inrrange/add/",CreateInrRangeAPIView.as_view(),name="add_inr")
 	
 	
 ]

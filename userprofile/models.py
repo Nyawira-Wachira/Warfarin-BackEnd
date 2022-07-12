@@ -1,10 +1,11 @@
+from email.policy import default
+from locale import currency
 import uuid
 from django.db import models
 from user.models import User
 
 
 class PaitentProfile(models.Model):
-
 
 	# reception
 	full_name = models.CharField(max_length=50, unique=False,default="Full name")
@@ -23,7 +24,12 @@ class PaitentProfile(models.Model):
 	# lab tech
 
 	inr_range = models.PositiveIntegerField(null=False, default=2.4)
+	
+	# default 
 
+	currency_dose =models.CharField(max_length=50, default="5 mg")
+
+	
 	
 
 	# doctor 
@@ -115,10 +121,32 @@ class ReceptionProfile(models.Model):
 		('F', 'Female'),
 	)
 	gender = models.CharField(max_length=1, choices=GENDER_CHOICES ,default='M')
-	
 
 	class Meta:
-		'''
-		to set table name in database
-		'''
+
+
 		db_table = "reception_profile"
+
+
+
+# Inr Range 
+
+class InrRangeProfile(models.Model):
+	INRPROTOCOLS_CHOICES = (
+		('INR 2-3', '2-3 PROTOCOL'),
+		('INR 2.5-3.5', '2.5-3.5 PROTOCOL'),
+	)
+	inr_type = models.CharField(max_length=20, choices=INRPROTOCOLS_CHOICES ,default='INR 2-3')
+	inr_range = models.CharField(max_length=50,default="0")
+	remedy = models.CharField(max_length=500,default="EXtra Dose and or increase weekly dose by 10-20%")
+	return_to_clinc =models.CharField(max_length=50,default="2 to 3 weeks")
+
+	class Meta:
+
+		db_table = "inrrange_profile"
+
+
+	
+	
+	
+
