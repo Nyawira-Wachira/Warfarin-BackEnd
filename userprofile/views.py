@@ -21,23 +21,6 @@ class UserProfileView(RetrieveAPIView):
 
 	def get(self, request):
 		try:
-			
-			if request.user.is_paitent == True:
-				user_profile = PaitentProfile.objects.get(user=request.user)
-				status_code = status.HTTP_200_OK
-				response = {
-					'success': 'true',
-					'status code': status_code,
-					'message': 'Paitent profile fetched successfully',
-					'data': [{
-						'first_name': user_profile.first_name,
-						'last_name': user_profile.last_name,
-						'phone_number': user_profile.phone_number,
-						'age': user_profile.age,
-						'gender': user_profile.gender,
-						'case':user_profile.case,
-					}]
-				}
 				
 			if request.user.is_labtech == True:
 				user_profile = LabtechProfile.objects.get(user=request.user)
@@ -47,10 +30,9 @@ class UserProfileView(RetrieveAPIView):
 				'status code': status_code,
 				'message': 'mme Lab profile fetched successfully',
 				'data': [{
-					'username': user_profile.username,
+					'full_name': user_profile.full_name,
 						'email': user_profile.user.email,
-						'first_name':user_profile.first_name,
-						'last_name':user_profile.last_name,
+						
 						'phone_number':user_profile.phone_number,
 						'gender':user_profile.gender,
 					
@@ -66,10 +48,9 @@ class UserProfileView(RetrieveAPIView):
 				'status code': status_code,
 				'message': 'Receptionist profile fetched successfully',
 				'data': [{
-					'username': user_profile.username,
+					'full_name': user_profile.full_name,
 						'email': user_profile.user.email,
-						'first_name':user_profile.first_name,
-						'last_name':user_profile.last_name,
+						
 						'phone_number':user_profile.phone_number,
 						'gender':user_profile.gender,
 					
@@ -84,10 +65,9 @@ class UserProfileView(RetrieveAPIView):
 					'status code': status_code,
 					'message': 'Nurse profile fetched successfully',
 					'data': [{
-						'username': user_profile.username,
+						'full_name': user_profile.full_name,
 						'email': user_profile.user.email,
-						'first_name':user_profile.first_name,
-						'last_name':user_profile.last_name,
+						
 						'phone_number':user_profile.phone_number,
 						'gender':user_profile.gender,
 						
@@ -101,10 +81,9 @@ class UserProfileView(RetrieveAPIView):
 					'status code': status_code,
 					'message': 'Doctor profle fetched successfully',
 					'data': [{
-						'username': user_profile.username,
+						'full_name': user_profile.full_name,
 						'email': user_profile.user.email,
-						'first_name':user_profile.first_name,
-						'last_name':user_profile.last_name,
+						
 						'phone_number':user_profile.phone_number,
 						'gender':user_profile.gender,
 						

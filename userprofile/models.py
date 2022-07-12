@@ -8,22 +8,22 @@ from user.models import User
 class PaitentProfile(models.Model):
 
 	# reception
-	full_name = models.CharField(max_length=50, unique=False,default="Full name")
-	age = models.PositiveIntegerField(default=20)
-	residence = models.CharField(max_length=50, unique=False, default="Kenya")
-	email = models.EmailField(max_length=255, unique=True,default="patient@gmail.com")
-	phone_number = models.CharField(max_length=10, unique=True,blank=False, default="0723467890")
+	full_name = models.CharField(max_length=50, unique=False,default="")
+	age = models.PositiveIntegerField(default=0)
+	residence = models.CharField(max_length=50, unique=False, default="")
+	email = models.EmailField(max_length=255, unique=True,default="")
+	phone_number = models.CharField(max_length=10, unique=True,blank=False, default="")
 	
 	# nurse
 
-	bp = models.PositiveIntegerField(default=21)
-	temparature = models.PositiveIntegerField(default=37)
-	height = models.CharField(max_length=50, default="1.75m")
-	weight =models.CharField(max_length=50, default="60 kgs")
+	bp = models.CharField(max_length=100,default="")
+	temparature = models.PositiveIntegerField(default=0)
+	height = models.CharField(max_length=50, default="")
+	weight =models.CharField(max_length=50, default="")
 
 	# lab tech
 
-	inr_range = models.PositiveIntegerField(null=False, default=2.4)
+	inr_range = models.PositiveIntegerField(default=0)
 	
 	# default 
 
@@ -45,15 +45,13 @@ class PaitentProfile(models.Model):
 class DoctorProfile(models.Model):
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='doctor_profile')
-	username = models.CharField(max_length=50, unique=False)
-	first_name = models.CharField(max_length=50, unique=False,default='firstname')
-	last_name = models.CharField(max_length=50, unique=False,default='lastname')
-	phone_number = models.CharField(max_length=10,default='12345678')
+	full_name = models.CharField(max_length=50, unique=False)
+	phone_number = models.CharField(max_length=10,default='')
 	GENDER_CHOICES = (
 		('M', 'Male'),
 		('F', 'Female'),
 	)
-	gender = models.CharField(max_length=1, choices=GENDER_CHOICES ,default='M')
+	gender = models.CharField(max_length=1, choices=GENDER_CHOICES ,default='')
 
 
 	class Meta:
@@ -66,15 +64,13 @@ class DoctorProfile(models.Model):
 class NurseProfile(models.Model):
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='nurse_profile')
-	username = models.CharField(max_length=50, unique=False)
-	first_name = models.CharField(max_length=50, unique=False,default='firstname')
-	last_name = models.CharField(max_length=50, unique=False,default='lastname')
-	phone_number = models.CharField(max_length=10,default='12345678')
+	full_name = models.CharField(max_length=50, unique=False)
+	phone_number = models.CharField(max_length=10,default='')
 	GENDER_CHOICES = (
 		('M', 'Male'),
 		('F', 'Female'),
 	)
-	gender = models.CharField(max_length=1, choices=GENDER_CHOICES ,default='M')
+	gender = models.CharField(max_length=1, choices=GENDER_CHOICES ,default='')
 
 
 	class Meta:
@@ -90,15 +86,13 @@ class LabtechProfile(models.Model):
 
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='labtech_profile')
-	username = models.CharField(max_length=50, unique=False)
-	first_name = models.CharField(max_length=50, unique=False,default='firstname')
-	last_name = models.CharField(max_length=50, unique=False,default='lastname')
-	phone_number = models.CharField(max_length=10,default='12345678')
+	full_name = models.CharField(max_length=50, unique=False)
+	phone_number = models.CharField(max_length=10,default='')
 	GENDER_CHOICES = (
 		('M', 'Male'),
 		('F', 'Female'),
 	)
-	gender = models.CharField(max_length=1, choices=GENDER_CHOICES ,default='M')
+	gender = models.CharField(max_length=1, choices=GENDER_CHOICES ,default='')
 	
 
 	class Meta:
@@ -112,15 +106,13 @@ class LabtechProfile(models.Model):
 class ReceptionProfile(models.Model):
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='reception_profile')
-	username = models.CharField(max_length=50, unique=False)
-	first_name = models.CharField(max_length=50, unique=False,default='firstname')
-	last_name = models.CharField(max_length=50, unique=False,default='lastname')
-	phone_number = models.CharField(max_length=10,default='12345678')
+	full_name = models.CharField(max_length=50, unique=False)
+	phone_number = models.CharField(max_length=10,default='')
 	GENDER_CHOICES = (
 		('M', 'Male'),
 		('F', 'Female'),
 	)
-	gender = models.CharField(max_length=1, choices=GENDER_CHOICES ,default='M')
+	gender = models.CharField(max_length=1, choices=GENDER_CHOICES ,default='')
 
 	class Meta:
 
@@ -129,17 +121,25 @@ class ReceptionProfile(models.Model):
 
 
 
+
+
+
+
+class InrProtocolProfile(models.Model):
+	inr_protocal = models.CharField(max_length=50,default="")
+	
+
+	class Meta:
+		
+		db_table = "inrprotocal_profile"
 # Inr Range 
 
 class InrRangeProfile(models.Model):
-	INRPROTOCOLS_CHOICES = (
-		('INR 2-3', '2-3 PROTOCOL'),
-		('INR 2.5-3.5', '2.5-3.5 PROTOCOL'),
-	)
-	inr_type = models.CharField(max_length=20, choices=INRPROTOCOLS_CHOICES ,default='INR 2-3')
+	inr_protocol = models.OneToOneField(InrProtocolProfile, on_delete=models.CASCADE, related_name='inrprotocal_profile', default=1)
 	inr_range = models.CharField(max_length=50,default="0")
-	remedy = models.CharField(max_length=500,default="EXtra Dose and or increase weekly dose by 10-20%")
-	return_to_clinc =models.CharField(max_length=50,default="2 to 3 weeks")
+	remedy = models.CharField(max_length=500,default="")
+	return_to_clinc =models.CharField(max_length=50,default="")
+	
 
 	class Meta:
 
