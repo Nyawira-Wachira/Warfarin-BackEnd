@@ -6,8 +6,8 @@ from rest_framework.generics import RetrieveAPIView,UpdateAPIView,ListAPIView,De
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-from user.serializers import PaitentAddSerializer, DoctorRegistrationSerializer,LabTechRegistrationSerializer,ReceptionRegistrationSerializer,NurseRegistrationSerializer
-from userprofile.models import LabtechProfile, PaitentProfile,DoctorProfile,NurseProfile, ReceptionProfile
+from user.serializers import PaitentAddSerializer,InrAddSerializer, DoctorRegistrationSerializer,LabTechRegistrationSerializer,ReceptionRegistrationSerializer,NurseRegistrationSerializer
+from userprofile.models import LabtechProfile, InrRangeProfile,PaitentProfile,DoctorProfile,NurseProfile, ReceptionProfile
 from user.models import User
 
 class UserProfileView(RetrieveAPIView):
@@ -141,31 +141,71 @@ class ListPatientAPIView(ListAPIView):
 
 	permission_classes = (IsAuthenticated,)
 	authentication_class = JSONWebTokenAuthentication
-	"""This endpoint list all of the available todos from the database"""
+	"""This endpoint list all of the available Patient from the database"""
 	queryset = PaitentProfile.objects.all()
-	serializer_class = PaitentAddSerializer
+	serializer_class = InrAddSerializer
 
 class CreatePatientAPIView(CreateAPIView):
 	permission_classes = (IsAuthenticated,)
 	authentication_class = JSONWebTokenAuthentication
-	"""This endpoint allows for creation of a todo"""
+	"""This endpoint allows for creation of a Patient"""
 	queryset = PaitentProfile.objects.all()
-	serializer_class = PaitentAddSerializer
+	serializer_class = InrAddSerializer
 
 class UpdatePatientAPIView(UpdateAPIView):
 	permission_classes = (IsAuthenticated,)
 	authentication_class = JSONWebTokenAuthentication
-	"""This endpoint allows for updating a specific todo by passing in the id of the todo to update"""
+	"""This endpoint allows for updating a specificPatient by passing in the id of the Patient to update"""
 	queryset = PaitentProfile.objects.all()
-	serializer_class = PaitentAddSerializer
+	serializer_class = InrAddSerializer
 
 
 class DeletePatientAPIView(DestroyAPIView):
 	permission_classes = (IsAuthenticated,)
 	authentication_class = JSONWebTokenAuthentication
-	"""This endpoint allows for deletion of a specific Todo from the database"""
+	"""This endpoint allows for deletion of a specific Patient from the database"""
 	queryset = PaitentProfile.objects.all()
+	serializer_class = InrAddSerializer
+
+#  Inr 
+
+
+			
+class ListInrRangeAPIView(ListAPIView):
+
+	permission_classes = (IsAuthenticated,)
+	authentication_class = JSONWebTokenAuthentication
+	"""This endpoint list all of the available Patient from the database"""
+	queryset = InrRangeProfile.objects.all()
 	serializer_class = PaitentAddSerializer
+
+class CreateInrRangeAPIView(CreateAPIView):
+	permission_classes = (IsAuthenticated,)
+	authentication_class = JSONWebTokenAuthentication
+	"""This endpoint allows for creation of a Patient"""
+	queryset = InrRangeProfile.objects.all()
+	serializer_class = InrAddSerializer
+
+class UpdateInrRangeAPIView(UpdateAPIView):
+	permission_classes = (IsAuthenticated,)
+	authentication_class = JSONWebTokenAuthentication
+	"""This endpoint allows for updating a specificPatient by passing in the id of the Patient to update"""
+	queryset = InrRangeProfile.objects.all()
+	serializer_class = InrAddSerializer
+
+
+class DeleteInrRangeAPIView(DestroyAPIView):
+	permission_classes = (IsAuthenticated,)
+	authentication_class = JSONWebTokenAuthentication
+	"""This endpoint allows for deletion of a specific Patient from the database"""
+	queryset = InrRangeProfile.objects.all()
+	serializer_class = InrAddSerializer
+
+
+
+
+
+
 
 
 
