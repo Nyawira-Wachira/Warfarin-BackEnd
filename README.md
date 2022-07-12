@@ -407,6 +407,66 @@ Method : GET
 
 ```
 
+# ADD PATIENT
+Endpoint method= POST
+
+Authentication= required
+
+```
+/create/patient
+```
+
+Data
+```
+{
+ <!-- Receptionist -->
+    "full_name": "",
+    "age": ,
+    "residence": "",
+    "email": "",
+    "phone_number": "",
+<!-- Nurse  method=PUT Patient id-->   
+    "bp": ,
+    "temparature": ,
+    "height": "",
+    "weight": "",
+<!-- Labtech method=PUT Patient id -->
+    "inr_range":,
+<!-- Doctor method=PUT Patient id -->
+    "currency_dose": "5 mg",
+    "diagnosis": ""
+}
+```
+
+# GET ALL PATIENTS
+
+Endpoint
+
+Method= GET 
+
+Authentication required 
+```
+{
+        "id": 3,
+        "full_name": "Susana",
+        "age": 30,
+        "residence": "Kayole",
+        "email": "ana@gmail.com",
+        "phone_number": "46555889",
+        "bp": 80,
+        "temparature": 40,
+        "height": "3.14m",
+        "weight": "80kg",
+        "inr_range": 2,
+        "currency_dose": "5 mg",
+        "diagnosis": "Continue with the previous dose of ...  RTC 2 to 4 Weeks"
+    }
+```
+```
+/patient/all/
+
+```
+
 
 
 
