@@ -12,6 +12,8 @@ class PaitentProfile(models.Model):
 	residence = models.CharField(max_length=50, unique=False, default="")
 	email = models.EmailField(max_length=255, unique=True,default="")
 	phone_number = models.CharField(max_length=10, unique=True,blank=False, default="")
+	gender = models.CharField(max_length=50, default="")
+
 	
 	# nurse
 
