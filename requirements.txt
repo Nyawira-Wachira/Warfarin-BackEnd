@@ -9,3 +9,4 @@ djangorestframework-simplejwt
 djangorestframework-jwt
 psycopg2-binary==2.8.1
 django-environ 
+psycopg2
