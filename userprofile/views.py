@@ -204,6 +204,7 @@ class PatientRemedyAPIView(ListAPIView):
 	def ComputeA(self,inr_range_input):
 	# algorithm for A
 		algorithm = 'INR 2-3'
+		remedy = None
 
 		if inr_range_input  <= 1.5:
 			
@@ -243,6 +244,7 @@ class PatientRemedyAPIView(ListAPIView):
 	def ComputeB(self,inr_range_input):
 	# algorithm for A
 		algorithm = 'INR 2.5-3.5'
+		remedy = None
 
 		if inr_range_input  <= 2.0:
 			
