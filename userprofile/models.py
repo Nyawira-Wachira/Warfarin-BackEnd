@@ -10,8 +10,8 @@ class PaitentProfile(models.Model):
 	full_name = models.CharField(max_length=50, unique=False,default="")
 	age = models.PositiveIntegerField(default=0)
 	residence = models.CharField(max_length=50, unique=False, default="")
-	email = models.EmailField(max_length=255, unique=True,default="")
-	phone_number = models.CharField(max_length=10, unique=True,blank=False, default="")
+	email = models.EmailField(max_length=255,default="")
+	phone_number = models.CharField(max_length=10,blank=False, default="")
 	gender = models.CharField(max_length=50, default="")
 
 	
@@ -35,7 +35,7 @@ class PaitentProfile(models.Model):
 
 	# doctor 
 
-	diagnosis = models.CharField(max_length=50, default="Continue with the previous dose of ...  RTC 2 to 4 Weeks")
+	diagnosis = models.CharField(max_length=200, default="")
 
 	class Meta:
 		'''
