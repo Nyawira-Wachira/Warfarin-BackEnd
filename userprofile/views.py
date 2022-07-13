@@ -282,7 +282,7 @@ class PatientRemedyAPIView(ListAPIView):
 
 
 	def get_queryset(self):
-
+		remedy= None
 		# first check the algoritm for the inr range
 		algorithm = self.request.query_params.get('inr_protocol',False)
 		if algorithm == 'INR 2-3':

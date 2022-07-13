@@ -24,7 +24,7 @@ class PaitentProfile(models.Model):
 
 	# lab tech
 
-	inr_range = models.PositiveIntegerField(default=0)
+	inr_range = models.CharFiel(max_length=50, default="")
 	
 	# default 
 
