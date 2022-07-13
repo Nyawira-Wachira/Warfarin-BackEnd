@@ -13,14 +13,14 @@ JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
 class LabTechSerializer(serializers.ModelSerializer):
     class Meta:
         model = LabtechProfile
-        fields = ['username']
+        fields = ['full_name']
 # reception
 
 
 class ReceptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReceptionProfile
-        fields = ['username']
+        fields = ['full_name']
 
 
 
@@ -36,12 +36,12 @@ class PaitentSerializer(serializers.ModelSerializer):
 class DoctorSerializer(serializers.ModelSerializer):
     class Meta:
         model = DoctorProfile
-        fields = ['username']
+        fields = ['full_name']
 
 class NurseSerializer(serializers.ModelSerializer):
     class Meta:
         model = NurseProfile
-        fields = ['username','first_name','last_name','phone_number','gender']
+        fields = ['full_name','phone_number','gender']
 
 
 
@@ -61,7 +61,7 @@ class LabTechRegistrationSerializer(serializers.ModelSerializer):
         user = User.objects.create_labtechuser(**validated_data)
         LabtechProfile.objects.create(
             user=user,
-            username=profile_data['username'],
+            full_name=profile_data['full_name'],
         )
         return user
 
@@ -81,7 +81,7 @@ class ReceptionRegistrationSerializer(serializers.ModelSerializer):
         user = User.objects.create_receptionistuser(**validated_data)
         ReceptionProfile.objects.create(
             user=user,
-           username=profile_data['username'],
+           full_name=profile_data['full_name'],
         )
         return user
 
@@ -99,7 +99,7 @@ class DoctorRegistrationSerializer(serializers.ModelSerializer):
         user = User.objects.create_doctoruser(**validated_data)
         DoctorProfile.objects.create(
             user=user,
-            username=profile_data['username'],
+            full_name=profile_data['full_name'],
             
         )
         return user
@@ -119,7 +119,7 @@ class NurseRegistrationSerializer(serializers.ModelSerializer):
         user = User.objects.create_nurseuser(**validated_data)
         NurseProfile.objects.create(
             user=user,
-            username=profile_data['username'],
+            full_name=profile_data['full_name'],
 
             
             
@@ -135,6 +135,7 @@ class PaitentAddSerializer(serializers.ModelSerializer):
 
 
 class InrAddSerializer(serializers.ModelSerializer):
+  
 
     class Meta:
         model = InrRangeProfile

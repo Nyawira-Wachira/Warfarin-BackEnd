@@ -21,23 +21,6 @@ class UserProfileView(RetrieveAPIView):
 
 	def get(self, request):
 		try:
-			
-			if request.user.is_paitent == True:
-				user_profile = PaitentProfile.objects.get(user=request.user)
-				status_code = status.HTTP_200_OK
-				response = {
-					'success': 'true',
-					'status code': status_code,
-					'message': 'Paitent profile fetched successfully',
-					'data': [{
-						'first_name': user_profile.first_name,
-						'last_name': user_profile.last_name,
-						'phone_number': user_profile.phone_number,
-						'age': user_profile.age,
-						'gender': user_profile.gender,
-						'case':user_profile.case,
-					}]
-				}
 				
 			if request.user.is_labtech == True:
 				user_profile = LabtechProfile.objects.get(user=request.user)
@@ -47,10 +30,9 @@ class UserProfileView(RetrieveAPIView):
 				'status code': status_code,
 				'message': 'mme Lab profile fetched successfully',
 				'data': [{
-					'username': user_profile.username,
+					'full_name': user_profile.full_name,
 						'email': user_profile.user.email,
-						'first_name':user_profile.first_name,
-						'last_name':user_profile.last_name,
+						
 						'phone_number':user_profile.phone_number,
 						'gender':user_profile.gender,
 					
@@ -66,10 +48,9 @@ class UserProfileView(RetrieveAPIView):
 				'status code': status_code,
 				'message': 'Receptionist profile fetched successfully',
 				'data': [{
-					'username': user_profile.username,
+					'full_name': user_profile.full_name,
 						'email': user_profile.user.email,
-						'first_name':user_profile.first_name,
-						'last_name':user_profile.last_name,
+						
 						'phone_number':user_profile.phone_number,
 						'gender':user_profile.gender,
 					
@@ -84,10 +65,9 @@ class UserProfileView(RetrieveAPIView):
 					'status code': status_code,
 					'message': 'Nurse profile fetched successfully',
 					'data': [{
-						'username': user_profile.username,
+						'full_name': user_profile.full_name,
 						'email': user_profile.user.email,
-						'first_name':user_profile.first_name,
-						'last_name':user_profile.last_name,
+						
 						'phone_number':user_profile.phone_number,
 						'gender':user_profile.gender,
 						
@@ -101,10 +81,9 @@ class UserProfileView(RetrieveAPIView):
 					'status code': status_code,
 					'message': 'Doctor profle fetched successfully',
 					'data': [{
-						'username': user_profile.username,
+						'full_name': user_profile.full_name,
 						'email': user_profile.user.email,
-						'first_name':user_profile.first_name,
-						'last_name':user_profile.last_name,
+						
 						'phone_number':user_profile.phone_number,
 						'gender':user_profile.gender,
 						
@@ -200,6 +179,131 @@ class DeleteInrRangeAPIView(DestroyAPIView):
 	"""This endpoint allows for deletion of a specific Patient from the database"""
 	queryset = InrRangeProfile.objects.all()
 	serializer_class = InrAddSerializer
+
+
+# inr doc post
+
+
+# compute algorithm
+
+
+
+
+
+
+class PatientRemedyAPIView(ListAPIView):
+
+
+	permission_classes = (IsAuthenticated,)
+	authentication_class = JSONWebTokenAuthentication
+
+	queryset = InrRangeProfile.objects.all()
+	serializer_class = InrAddSerializer
+
+
+	def ComputeA(self,inr_range_input):
+	# algorithm for A
+		algorithm = 'INR 2-3'
+
+		if inr_range_input  <= 1.5:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='< 1.5',inr_protocol=algorithm)
+			print(remedy)
+		elif inr_range_input > 1.5 and inr_range_input <= 1.9:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='1.5-1.9',inr_protocol=algorithm)
+
+		elif inr_range_input > 2.0 and inr_range_input <= 3.3:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='2.0-3.3',inr_protocol=algorithm)
+
+		elif inr_range_input > 3.4 and inr_range_input <= 4.0:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='3.4-4.0',inr_protocol=algorithm)
+
+
+		elif inr_range_input > 4.1 and inr_range_input <= 5.0:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='4.1-5.0',inr_protocol=algorithm)
+		elif inr_range_input > 5.1 and inr_range_input <= 9.0:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='5.1-9.0',inr_protocol=algorithm)
+
+		elif inr_range_input >9.1:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='>9.0',inr_protocol=algorithm)
+
+		else:
+			remedy = None
+
+		return remedy
+
+
+
+	def ComputeB(self,inr_range_input):
+	# algorithm for A
+		algorithm = 'INR 2.5-3.5'
+
+		if inr_range_input  <= 2.0:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='< 2.0',inr_protocol=algorithm)
+			
+		elif inr_range_input > 2.0 and inr_range_input <= 2.4:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='2.0-2.4',inr_protocol=algorithm)
+
+		elif inr_range_input > 2.5 and inr_range_input <= 3.7:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='2.5-3.7',inr_protocol=algorithm)
+
+		elif inr_range_input > 3.8 and inr_range_input <= 4.0:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='3.8-4.0',inr_protocol=algorithm)
+
+		elif inr_range_input > 4.1 and inr_range_input <= 5.9:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='4.1-5.9',inr_protocol=algorithm)
+			
+		elif inr_range_input > 6.0 and inr_range_input <= 9.0:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='6.0-9.0',inr_protocol=algorithm)
+
+		elif inr_range_input >9.1:
+			
+			remedy = InrRangeProfile.objects.filter(inr_range='>9.0',inr_protocol=algorithm)
+
+		else:
+			remedy = None
+
+		return remedy
+
+
+
+	def get_queryset(self):
+
+		# first check the algoritm for the inr range
+		algorithm = self.request.query_params.get('inr_protocol',False)
+		if algorithm == 'INR 2-3':
+			patient_inr_range = self.request.query_params.get('inr_range',False)
+			patient_inr_range = float(patient_inr_range)
+			remedy = self.ComputeA(patient_inr_range)
+
+		elif algorithm == 'INR 2.5-3.5':
+			patient_inr_range = self.request.query_params.get('inr_range',False)
+			patient_inr_range = float(patient_inr_range)
+			remedy = self.ComputeB(patient_inr_range)
+
+			
+			
+	
+		print(remedy)
+
+		return remedy
+
+
+	
+
+
 
 
 
