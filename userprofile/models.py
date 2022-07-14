@@ -60,6 +60,25 @@ class DoctorProfile(models.Model):
 		to set table name in database
 		'''
 		db_table = "doctor_profile"
+# AdminProfile
+
+class AdminProfile(models.Model):
+	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='admin_profile')
+	full_name = models.CharField(max_length=50, unique=False)
+	phone_number = models.CharField(max_length=10,default='')
+	GENDER_CHOICES = (
+		('M', 'Male'),
+		('F', 'Female'),
+	)
+	gender = models.CharField(max_length=1, choices=GENDER_CHOICES ,default='')
+
+
+	class Meta:
+		'''
+		to set table name in database
+		'''
+		db_table = "admin_profile"
 
 
 class NurseProfile(models.Model):

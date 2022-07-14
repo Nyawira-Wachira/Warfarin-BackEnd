@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
-from user.serializers import LabTechRegistrationSerializer,DoctorRegistrationSerializer,NurseRegistrationSerializer, ReceptionRegistrationSerializer, UserSerializer
+from user.serializers import LabTechRegistrationSerializer,DoctorRegistrationSerializer,AdminRegistrationSerializer,NurseRegistrationSerializer, ReceptionRegistrationSerializer, UserSerializer
 from user.serializers import UserLoginSerializer
 from user.models import User
 
@@ -84,6 +84,23 @@ class NurseRegistrationView(CreateAPIView):
             'success' : 'True',
             'status code' : status.HTTP_200_OK,
             'message': 'Nurse registered  successfully',
+            }
+        status_code = status.HTTP_200_OK
+        return Response(response, status=status_code)
+
+class AdminRegistrationView(CreateAPIView):
+
+    serializer_class = AdminRegistrationSerializer
+    permission_classes = (AllowAny,)
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        response = {
+            'success' : 'True',
+            'status code' : status.HTTP_200_OK,
+            'message': 'Admin registered  successfully',
             }
         status_code = status.HTTP_200_OK
         return Response(response, status=status_code)

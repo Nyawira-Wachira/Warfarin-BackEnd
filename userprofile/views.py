@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from user.serializers import PaitentAddSerializer,InrAddSerializer, DoctorRegistrationSerializer,LabTechRegistrationSerializer,ReceptionRegistrationSerializer,NurseRegistrationSerializer
-from userprofile.models import LabtechProfile, InrRangeProfile,PaitentProfile,DoctorProfile,NurseProfile, ReceptionProfile
+from userprofile.models import LabtechProfile, InrRangeProfile,PaitentProfile,AdminProfile,DoctorProfile,NurseProfile, ReceptionProfile
 from user.models import User
 
 class UserProfileView(RetrieveAPIView):
@@ -28,7 +28,7 @@ class UserProfileView(RetrieveAPIView):
 				response = {
 				'success': 'true',
 				'status code': status_code,
-				'message': 'mme Lab profile fetched successfully',
+				'message': 'Lab profile fetched successfully',
 				'data': [{
 					'full_name': user_profile.full_name,
 						'email': user_profile.user.email,
@@ -38,6 +38,24 @@ class UserProfileView(RetrieveAPIView):
 					
 				}]
 			}
+    
+    
+			if request.user.is_admin == True:
+					user_profile = AdminProfile.objects.get(user=request.user)
+					status_code = status.HTTP_200_OK
+					response = {
+					'success': 'true',
+					'status code': status_code,
+					'message': 'Admin profile fetched successfully',
+					'data': [{
+						'full_name': user_profile.full_name,
+							'email': user_profile.user.email,
+							
+							'phone_number':user_profile.phone_number,
+							'gender':user_profile.gender,
+						
+					}]
+				}
 
 
 			if request.user.is_receptionist == True:
@@ -73,6 +91,8 @@ class UserProfileView(RetrieveAPIView):
 						
 					}]
 				}
+   
+    
 			if request.user.is_doctor == True:
 				user_profile = DoctorProfile.objects.get(user = request.user)
 				status_code = status.HTTP_200_OK
