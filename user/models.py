@@ -84,14 +84,14 @@ class UserManager(BaseUserManager):
 		user.save()
 		return user
 #admin
-def create_adminuser(self,email,password):
-		if password is None:
-			raise TypeError('admin must have a password')
-		user = self.create_user(email)
-		user.set_password(password)
-		user.is_admin = True
-		user.save()
-		return user
+	def create_adminuser(self,email,password):
+			if password is None:
+				raise TypeError('admin must have a password')
+			user = self.create_user(email)
+			user.set_password(password)
+			user.is_admin = True
+			user.save()
+			return user
 		
 class User(AbstractBaseUser):
 

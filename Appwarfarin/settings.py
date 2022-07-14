@@ -97,6 +97,7 @@ WSGI_APPLICATION = 'Appwarfarin.wsgi.application'
 
 # PostgreSQL Database
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
