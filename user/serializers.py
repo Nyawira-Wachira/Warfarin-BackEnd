@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import update_last_login
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
-from userprofile.models import LabtechProfile, NurseProfile,InrRangeProfile, PaitentProfile,DoctorProfile, ReceptionProfile
+from userprofile.models import LabtechProfile, AdminProfile, NurseProfile,InrRangeProfile, PaitentProfile,DoctorProfile, ReceptionProfile
 from user.models import User
 
 
@@ -22,7 +22,10 @@ class ReceptionSerializer(serializers.ModelSerializer):
         model = ReceptionProfile
         fields = ['full_name']
 
-
+class AdminSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AdminProfile
+        fields = ['full_name','phone_number','gender']
 
 
  
@@ -104,6 +107,30 @@ class DoctorRegistrationSerializer(serializers.ModelSerializer):
         )
         return user
 
+
+# AdminRegistrationSerializer
+
+class AdminRegistrationSerializer(serializers.ModelSerializer):
+
+    profile = AdminSerializer(required=False)
+
+    class Meta:
+        model = User
+        fields = ('email', 'password', 'profile')
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        profile_data = validated_data.pop('profile')
+        user = User.objects.create_adminuser(**validated_data)
+        AdminProfile.objects.create(
+            user=user,
+            full_name=profile_data['full_name'],
+
+            
+            
+            
+        )
+        return user
 
 class NurseRegistrationSerializer(serializers.ModelSerializer):
 

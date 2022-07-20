@@ -87,26 +87,27 @@ WSGI_APPLICATION = 'Appwarfarin.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # PostgreSQL Database
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': '<db-name>',
-#         'USER': '<db-user>',
-#         'PASSWORD': '<db-password>',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dandjk84e6legu',
+        'USER': 'dyvhltbwgxyjrm',
+        'PASSWORD': 'f2e2eba7c281657f7edb39179763cb3acc5fd118280b1a2e674a0f8aa2ccd531',
+        'HOST': 'ec2-44-195-162-77.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

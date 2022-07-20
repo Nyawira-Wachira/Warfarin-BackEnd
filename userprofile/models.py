@@ -10,8 +10,10 @@ class PaitentProfile(models.Model):
 	full_name = models.CharField(max_length=50, unique=False,default="")
 	age = models.PositiveIntegerField(default=0)
 	residence = models.CharField(max_length=50, unique=False, default="")
-	email = models.EmailField(max_length=255, unique=True,default="")
-	phone_number = models.CharField(max_length=10, unique=True,blank=False, default="")
+	email = models.EmailField(max_length=255,default="")
+	phone_number = models.CharField(max_length=10,blank=False, default="")
+	gender = models.CharField(max_length=50, default="")
+
 	
 	# nurse
 
@@ -22,7 +24,7 @@ class PaitentProfile(models.Model):
 
 	# lab tech
 
-	inr_range = models.PositiveIntegerField(default=0)
+	inr_range = models.CharField(max_length=50, default="")
 	
 	# default 
 
@@ -33,7 +35,7 @@ class PaitentProfile(models.Model):
 
 	# doctor 
 
-	diagnosis = models.CharField(max_length=50, default="Continue with the previous dose of ...  RTC 2 to 4 Weeks")
+	diagnosis = models.CharField(max_length=200, default="")
 
 	class Meta:
 		'''
@@ -58,6 +60,25 @@ class DoctorProfile(models.Model):
 		to set table name in database
 		'''
 		db_table = "doctor_profile"
+# AdminProfile
+
+class AdminProfile(models.Model):
+	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='admin_profile')
+	full_name = models.CharField(max_length=50, unique=False)
+	phone_number = models.CharField(max_length=10,default='')
+	GENDER_CHOICES = (
+		('M', 'Male'),
+		('F', 'Female'),
+	)
+	gender = models.CharField(max_length=1, choices=GENDER_CHOICES ,default='')
+
+
+	class Meta:
+		'''
+		to set table name in database
+		'''
+		db_table = "admin_profile"
 
 
 class NurseProfile(models.Model):
